@@ -347,7 +347,6 @@ export default function ClientMenuDisplay({ menuData }: { menuData: MenuData }) 
           className={`py-12 text-center px-4 mt-8 border-t ${t.divider} print:hidden`}
         >
           <p className={`${t.textDark} font-bold text-lg mb-2`}>Thank you, visit again!</p>
-          <p className={`text-sm ${t.textMuted} opacity-70`}>Powered by MenuAI</p>
         </motion.footer>
       </div>
     </>
