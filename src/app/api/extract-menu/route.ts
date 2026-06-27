@@ -26,9 +26,14 @@ export async function POST(request: NextRequest) {
 
 Extract ALL items with their names, descriptions (if available), prices, dietary preferences, and organize them into logical categories.
 
+Also, assign the most appropriate theme for this restaurant from the following exactly 12 options based on its style and food: 
+'midnight', 'ivory', 'crimson', 'forest', 'cafe', 'ocean', 'sunset', 'neon', 'minimal', 'vintage', 'rustic', 'bubblegum'.
+(e.g., use 'cafe' for coffee shops, 'ocean' for seafood, 'rustic' for steakhouses).
+
 Return ONLY valid JSON in this exact format, no other text:
 {
   "restaurant_name": "${restaurantName}",
+  "theme": "midnight",
   "categories": [
     {
       "name": "Category Name",
@@ -52,6 +57,7 @@ Rules:
 - If price is not visible for an item, use 0
 - Determine if the item is vegetarian. Set "is_veg" to true if it is vegetarian, or false if it contains meat/seafood or if it's explicitly marked as non-vegetarian. If unsure, default to false.
 - Be thorough — do not miss any items
+- Choose exactly one theme from the 12 options
 - Return ONLY the JSON, absolutely no other text before or after`;
 
     // Process all files into Gemini inlineData format

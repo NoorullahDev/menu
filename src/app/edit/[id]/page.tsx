@@ -361,26 +361,34 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
           </div>
           {/* THEME SELECTOR */}
           <div className="pt-6 border-t border-white/10 mt-6">
-            <label className="block text-xs font-bold text-zinc-400 mb-4 uppercase tracking-wide">Menu Theme</label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <label className="block text-xs font-bold text-zinc-400 mb-4 uppercase tracking-wide">Menu Theme (12 Styles)</label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {[
                 { id: 'midnight', name: 'Midnight', bg: 'bg-[#09090b]', accent: 'bg-amber-500' },
                 { id: 'ivory', name: 'Ivory', bg: 'bg-[#FAF9F6]', accent: 'bg-[#BFA15F]' },
                 { id: 'crimson', name: 'Crimson', bg: 'bg-[#4A0E0E]', accent: 'bg-[#D4AF37]' },
                 { id: 'forest', name: 'Forest', bg: 'bg-[#154734]', accent: 'bg-[#F2C94C]' },
+                { id: 'cafe', name: 'Cafe', bg: 'bg-[#F5E6D3]', accent: 'bg-[#8B5A2B]' },
+                { id: 'ocean', name: 'Ocean', bg: 'bg-[#0F2027]', accent: 'bg-[#00D2FF]' },
+                { id: 'sunset', name: 'Sunset', bg: 'bg-[#2A0800]', accent: 'bg-[#FF7E5F]' },
+                { id: 'neon', name: 'Neon', bg: 'bg-[#050505]', accent: 'bg-[#FF00FF]' },
+                { id: 'minimal', name: 'Minimal', bg: 'bg-[#FFFFFF]', accent: 'bg-black' },
+                { id: 'vintage', name: 'Vintage', bg: 'bg-[#F4ECD8]', accent: 'bg-[#5E3A21]' },
+                { id: 'rustic', name: 'Rustic', bg: 'bg-[#2E1F1A]', accent: 'bg-[#FFB300]' },
+                { id: 'bubblegum', name: 'Bubblegum', bg: 'bg-[#FFE4E1]', accent: 'bg-[#FF69B4]' },
               ].map((theme) => (
                 <button
                   key={theme.id}
                   onClick={() => setMenuData({ ...menuData, theme: theme.id as any })}
                   className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all ${
                     (menuData.theme || 'midnight') === theme.id 
-                      ? 'border-amber-500 bg-amber-500/10' 
+                      ? 'border-amber-500 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]' 
                       : 'border-white/5 bg-black/20 hover:border-white/20'
                   }`}
                 >
-                  <div className={`w-12 h-12 rounded-full mb-2 flex overflow-hidden border border-white/20 shadow-md ${theme.bg}`}>
-                    <div className={`w-1/2 h-full`}></div>
-                    <div className={`w-1/2 h-full ${theme.accent}`}></div>
+                  <div className={`w-full h-12 rounded-lg mb-2 flex overflow-hidden border border-white/20 shadow-md ${theme.bg}`}>
+                    <div className={`w-2/3 h-full`}></div>
+                    <div className={`w-1/3 h-full ${theme.accent}`}></div>
                   </div>
                   <span className="text-xs font-bold text-zinc-300">{theme.name}</span>
                 </button>
