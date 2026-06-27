@@ -16,14 +16,9 @@ export default function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // If path is /login and we ARE authenticated, redirect to /dashboard
+  // If path is /login and we ARE authenticated, redirect to /
   if (request.nextUrl.pathname === '/login' && authToken === 'authenticated') {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-  
-  // If path is / and we ARE authenticated, redirect to /dashboard
-  if (request.nextUrl.pathname === '/' && authToken === 'authenticated') {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/', request.url));
   }
   
   // If path is / and NOT authenticated, redirect to /login
