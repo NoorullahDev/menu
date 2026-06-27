@@ -77,8 +77,55 @@ export default function Home() {
         </div>
       </header>
 
-      {/* TOP SECTION: SAVED PROJECTS & NEW MENU (THE DASHBOARD) */}
-      <section className="pt-28 pb-16 px-4 relative z-10 animate-in slide-in-from-bottom-8 fade-in duration-1000 fill-mode-both">
+      {/* HERO SECTION - TOP */}
+      <section className="pt-32 pb-16 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+        {/* Glowing Orbs background */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-[#09090b] to-[#09090b] -z-20"></div>
+        
+        {/* Added animate-float for subtle motion effect */}
+        <div className="container mx-auto max-w-4xl relative z-10 animate-in zoom-in-95 fade-in duration-1000 delay-300 fill-mode-both animate-float">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+            Welcome to Menu AI
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-zinc-100">
+            Digitalize your menu in <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">60 Seconds</span>
+          </h1>
+          <p className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Upload a photo or PDF of any menu. Our Gemini 2.5 AI instantly extracts it into a premium, mobile-optimized online catalog with a smart, auto-updating QR code.
+          </p>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS SECTION - MIDDLE */}
+      <section className="py-16 px-4 relative border-t border-white/5 bg-[#09090b]/50 animate-in slide-in-from-bottom-12 fade-in duration-1000 delay-500 fill-mode-both" id="how-it-works">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-100">How The Workflow Works</h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto">Three simple steps to transform the dining experience.</p>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-8 md:gap-6 relative">
+            <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-amber-500/0 via-amber-500/20 to-amber-500/0 -translate-y-1/2 z-0"></div>
+
+            <StepCard number="1" title="Scan or Upload" desc="Upload multiple images or a PDF of the menu from your computer." />
+            <StepCard number="2" title="AI Extraction" desc="Gemini AI detects every dish, price, and category effortlessly." />
+            <StepCard number="3" title="Live Updates" desc="Manage all menus here. Any edits automatically update the live QR codes." />
+          </div>
+        </div>
+      </section>
+
+      {/* SUBTLE DIVIDER */}
+      <div className="w-full flex justify-center py-8">
+        <div className="w-1/2 h-[1px] bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
+      </div>
+
+      {/* SAVED PROJECTS & NEW MENU - BOTTOM */}
+      <section className="py-12 pb-24 px-4 relative z-10 animate-in slide-in-from-bottom-8 fade-in duration-1000 fill-mode-both">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-white/10 pb-6">
             <div>
@@ -150,52 +197,6 @@ export default function Home() {
               ))}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* SUBTLE DIVIDER */}
-      <div className="w-full flex justify-center py-8">
-        <div className="w-1/2 h-[1px] bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
-      </div>
-
-      {/* HERO SECTION */}
-      <section className="pt-12 pb-20 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
-        {/* Glowing Orbs background */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-[#09090b] to-[#09090b] -z-20"></div>
-        
-        <div className="container mx-auto max-w-4xl relative z-10 animate-in zoom-in-95 fade-in duration-1000 delay-300 fill-mode-both">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-            </span>
-            Welcome to Menu AI
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-zinc-100">
-            Digitalize your menu in <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">60 Seconds</span>
-          </h1>
-          <p className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Upload a photo or PDF of any menu. Our Gemini 2.5 AI instantly extracts it into a premium, mobile-optimized online catalog with a smart, auto-updating QR code.
-          </p>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS SECTION */}
-      <section className="py-24 px-4 relative border-t border-white/5 bg-[#09090b]/50 animate-in slide-in-from-bottom-12 fade-in duration-1000 delay-500 fill-mode-both" id="how-it-works">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-100">How The Workflow Works</h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">Three simple steps to transform the dining experience.</p>
-          </div>
-          
-          <div className="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-8 md:gap-6 relative">
-            <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-amber-500/0 via-amber-500/20 to-amber-500/0 -translate-y-1/2 z-0"></div>
-
-            <StepCard number="1" title="Scan or Upload" desc="Upload multiple images or a PDF of the menu from your computer." />
-            <StepCard number="2" title="AI Extraction" desc="Gemini AI detects every dish, price, and category effortlessly." />
-            <StepCard number="3" title="Live Updates" desc="Manage all menus here. Any edits automatically update the live QR codes." />
-          </div>
         </div>
       </section>
 
