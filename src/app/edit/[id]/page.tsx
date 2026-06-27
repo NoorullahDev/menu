@@ -19,6 +19,7 @@ interface MenuCategory {
 
 interface MenuData {
   restaurant_name: string;
+  tagline?: string;
   categories: MenuCategory[];
   prep_time?: string;
   theme?: string;
@@ -328,6 +329,18 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
               className="w-full text-2xl font-bold bg-black/20 border border-zinc-800 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all text-zinc-100"
               placeholder="Restaurant Name"
             />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">Aesthetic Tagline / Vibe</label>
+            <input 
+              type="text" 
+              value={menuData.tagline || ''}
+              onChange={(e) => setMenuData({ ...menuData, tagline: e.target.value })}
+              className="w-full font-medium bg-black/20 border border-zinc-800 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all text-zinc-100"
+              placeholder="e.g. Handcrafted slices of perfection"
+            />
+            <p className="text-xs text-zinc-500 mt-1">A catchy, vibe-based subtitle that displays under the restaurant name.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/10">

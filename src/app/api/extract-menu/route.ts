@@ -30,9 +30,12 @@ Also, assign the most appropriate theme for this restaurant from the following e
 'midnight', 'ivory', 'crimson', 'forest', 'cafe', 'ocean', 'sunset', 'neon', 'minimal', 'vintage', 'rustic', 'bubblegum'.
 (e.g., use 'cafe' for coffee shops, 'ocean' for seafood, 'rustic' for steakhouses).
 
+Additionally, craft a short, catchy, and aesthetic tagline/slogan (under 10 words) that matches the vibe of the restaurant (e.g., "Handcrafted slices of perfection" for a pizza place, "Brewing moments of warmth" for a cafe).
+
 Return ONLY valid JSON in this exact format, no other text:
 {
   "restaurant_name": "${restaurantName}",
+  "tagline": "Crafting culinary perfection",
   "theme": "midnight",
   "categories": [
     {
@@ -58,6 +61,7 @@ Rules:
 - Determine if the item is vegetarian. Set "is_veg" to true if it is vegetarian, or false if it contains meat/seafood or if it's explicitly marked as non-vegetarian. If unsure, default to false.
 - Be thorough — do not miss any items
 - Choose exactly one theme from the 12 options
+- Generate a vibe-based tagline matching the restaurant type
 - Return ONLY the JSON, absolutely no other text before or after`;
 
     // Process all files into Gemini inlineData format

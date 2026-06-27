@@ -19,6 +19,7 @@ interface MenuCategory {
 
 interface MenuData {
   restaurant_name: string;
+  tagline?: string;
   categories: MenuCategory[];
   prep_time?: string;
   theme?: string;
@@ -168,6 +169,18 @@ export default function ClientMenuDisplay({ menuData }: { menuData: MenuData }) 
             <h1 className={`text-4xl md:text-5xl font-extrabold tracking-tight ${t.text} drop-shadow-lg`}>
               {menuData.restaurant_name}
             </h1>
+            
+            {menuData.tagline && (
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className={`mt-3 text-lg md:text-xl italic font-medium tracking-wide ${t.accentTextOnly} opacity-90`}
+              >
+                {menuData.tagline}
+              </motion.p>
+            )}
+
             <motion.div 
               initial={{ scaleX: 0 }} 
               animate={{ scaleX: 1 }} 
