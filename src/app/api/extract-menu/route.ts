@@ -3,11 +3,13 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { image, restaurantName } = await request.json();
+    const formData = await request.formData();
+    const files = formData.getAll('files') as File[];
+    const restaurantName = formData.get('restaurantName') as string;
 
-    if (!image || !restaurantName) {
+    if (!files || files.length === 0 || !restaurantName) {
       return NextResponse.json(
-        { error: 'Image and restaurant name are required' },
+        { error: 'At least one file (image or PDF) and restaurant name are required' },
         { status: 400 }
       );
     }
@@ -20,7 +22,7 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    const prompt = `You are a menu extraction AI. Analyze this image of a restaurant menu for "${restaurantName}".
+    const prompt = `You are a menu extraction AI. Analyze the provided file(s) containing a restaurant menu for "${restaurantName}".
 
 Extract ALL items with their names, descriptions (if available), prices, dietary preferences, and organize them into logical categories.
 
@@ -43,7 +45,7 @@ Return ONLY valid JSON in this exact format, no other text:
 }
 
 Rules:
-- Extract EVERY single item visible in the image
+- Extract EVERY single item visible across ALL pages/images
 - If categories are not visible, create logical ones (Starters, Main Course, Beverages, Desserts, etc.)
 - Prices should be numbers only, no currency symbols
 - If description is not visible, use empty string ""
@@ -52,17 +54,23 @@ Rules:
 - Be thorough — do not miss any items
 - Return ONLY the JSON, absolutely no other text before or after`;
 
-    const mimeType = image.split(';')[0].split(':')[1];
-    const base64Data = image.split(',')[1];
+    // Process all files into Gemini inlineData format
+    const imageParts = await Promise.all(
+      files.map(async (file) => {
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+        return {
+          inlineData: {
+            data: buffer.toString('base64'),
+            mimeType: file.type // 'application/pdf' or 'image/jpeg' etc.
+          }
+        };
+      })
+    );
 
     const result = await model.generateContent([
       prompt,
-      {
-        inlineData: {
-          mimeType: mimeType || 'image/jpeg',
-          data: base64Data
-        }
-      }
+      ...imageParts
     ]);
 
     const response = await result.response;
@@ -77,12 +85,11 @@ Rules:
   } catch (error: any) {
     console.error('Menu extraction error:', error);
     
-    let errorMessage = 'Failed to extract menu. Please try again with a clearer image.';
+    let errorMessage = 'Failed to extract menu. Please try again with clearer files.';
     
     if (error?.message?.includes('503 Service Unavailable') || error?.message?.includes('high demand')) {
       errorMessage = 'The AI is currently experiencing high demand. Please wait a few seconds and try again!';
     } else if (error?.message) {
-      // For other unexpected errors, it's helpful to see what actually failed during dev
       // errorMessage = error.message; 
     }
 
