@@ -8,6 +8,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
+            <img src="/logo.png" alt="MenuAI Logo" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(245,158,11,0.5)] group-hover:scale-110 transition-transform duration-300" />
             <span className="text-amber-500 font-bold text-xl flex items-center gap-2 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">
               MenuAI
             </span>
