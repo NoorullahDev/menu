@@ -12,6 +12,8 @@ export default function GenerateMenu() {
   const [isDragging, setIsDragging] = useState(false);
   const [menuId, setMenuId] = useState<string | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [currency, setCurrency] = useState('PKR');
+  const [theme, setTheme] = useState<'midnight' | 'ivory' | 'crimson' | 'forest'>('midnight');
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -88,7 +90,7 @@ export default function GenerateMenu() {
       const { data, error } = await supabase.from('menus').insert({
         restaurant_name: menuData.restaurant_name,
         slug: slug,
-        menu_data: menuData
+        menu_data: { ...menuData, currency, theme }
       }).select().single();
 
       if (error) {
@@ -230,6 +232,44 @@ export default function GenerateMenu() {
                   className="w-full bg-black/20 rounded-xl border border-zinc-700 px-4 py-3 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all text-zinc-100 placeholder-zinc-600"
                   required
                 />
+              </div>
+
+              {/* CURRENCY & THEME */}
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="currency" className="block text-sm font-bold text-zinc-300 mb-2">
+                    Currency
+                  </label>
+                  <select
+                    id="currency"
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value)}
+                    className="w-full bg-black/20 rounded-xl border border-zinc-700 px-4 py-3 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all text-zinc-100 appearance-none"
+                  >
+                    <option value="PKR">PKR (₨)</option>
+                    <option value="USD $">USD ($)</option>
+                    <option value="EUR €">EUR (€)</option>
+                    <option value="GBP £">GBP (£)</option>
+                    <option value="INR ₹">INR (₹)</option>
+                    <option value="Rs.">Rs.</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="theme" className="block text-sm font-bold text-zinc-300 mb-2">
+                    Theme
+                  </label>
+                  <select
+                    id="theme"
+                    value={theme}
+                    onChange={(e) => setTheme(e.target.value as any)}
+                    className="w-full bg-black/20 rounded-xl border border-zinc-700 px-4 py-3 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all text-zinc-100 appearance-none"
+                  >
+                    <option value="midnight">Midnight (Dark)</option>
+                    <option value="ivory">Ivory (Light)</option>
+                    <option value="crimson">Crimson (Red)</option>
+                    <option value="forest">Forest (Green)</option>
+                  </select>
+                </div>
               </div>
 
               {/* SUBMIT BUTTON */}

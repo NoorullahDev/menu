@@ -22,6 +22,7 @@ interface MenuData {
   categories: MenuCategory[];
   prep_time?: string;
   theme?: 'midnight' | 'ivory' | 'crimson' | 'forest';
+  currency?: string;
 }
 
 export default function EditMenuPage({ params }: { params: Promise<{ id: string }> }) {
@@ -329,7 +330,7 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 pt-4 border-t border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/10">
             <div>
               <label className="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">Estimated Prep Time</label>
               <input 
@@ -340,6 +341,22 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
                 placeholder="e.g. 15-20 minutes"
               />
               <p className="text-xs text-zinc-500 mt-1">Shown to customers while viewing the menu.</p>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">Currency</label>
+              <select
+                value={menuData.currency || 'PKR'}
+                onChange={(e) => setMenuData({ ...menuData, currency: e.target.value })}
+                className="w-full font-medium bg-black/20 border border-zinc-800 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all text-zinc-100 appearance-none"
+              >
+                <option value="PKR">PKR (₨)</option>
+                <option value="USD $">USD ($)</option>
+                <option value="EUR €">EUR (€)</option>
+                <option value="GBP £">GBP (£)</option>
+                <option value="INR ₹">INR (₹)</option>
+                <option value="Rs.">Rs.</option>
+              </select>
+              <p className="text-xs text-zinc-500 mt-1">Currency used for all item prices.</p>
             </div>
           </div>
           {/* THEME SELECTOR */}
@@ -411,15 +428,17 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
                           />
                         </div>
                         {/* Price */}
-                        <div className="w-full sm:w-32 shrink-0">
-                          <label className="block text-xs font-semibold text-zinc-500 mb-1">Price (Rs.)</label>
-                          <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 font-medium text-sm">Rs.</span>
+                        <div className="w-full sm:w-40 shrink-0">
+                          <label className="block text-xs font-semibold text-zinc-500 mb-1">Price</label>
+                          <div className="flex bg-black/20 border border-zinc-800 rounded-lg focus-within:ring-2 focus-within:ring-amber-500/30 focus-within:border-amber-500 transition-all overflow-hidden">
+                            <span className="flex items-center justify-center px-3 text-zinc-500 font-medium text-sm border-r border-zinc-800 bg-black/40 whitespace-nowrap">
+                              {menuData.currency || 'PKR'}
+                            </span>
                             <input 
                               type="number"
                               value={item.price === 0 ? '' : item.price}
                               onChange={(e) => handleItemChange(catIndex, itemIndex, 'price', e.target.value)}
-                              className="w-full bg-black/20 border border-zinc-800 rounded-lg p-2 pl-9 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all text-amber-500 font-bold"
+                              className="w-full bg-transparent p-2 focus:outline-none text-amber-500 font-bold min-w-[60px]"
                             />
                           </div>
                         </div>

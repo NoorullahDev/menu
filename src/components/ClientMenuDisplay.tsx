@@ -21,6 +21,7 @@ interface MenuData {
   categories: MenuCategory[];
   prep_time?: string;
   theme?: 'midnight' | 'ivory' | 'crimson' | 'forest';
+  currency?: string;
 }
 
 const THEMES = {
@@ -241,7 +242,7 @@ export default function ClientMenuDisplay({ menuData }: { menuData: MenuData }) 
                         )}
                         
                         <span className={`font-extrabold ${t.accentTextOnly} mt-2 block text-lg`}>
-                          ₹{item.price}
+                          {menuData.currency || 'PKR'} {item.price}
                         </span>
                       </div>
                     </div>
