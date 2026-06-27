@@ -5,7 +5,7 @@ export default function proxy(request: NextRequest) {
   const authToken = request.cookies.get('auth-token')?.value;
 
   // Check if we are on a protected path
-  const protectedPaths = ['/dashboard', '/generate', '/edit', '/api/extract-menu'];
+  const protectedPaths = ['/generate', '/edit', '/api/extract-menu'];
   const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path));
 
   // If path is protected and no valid auth token, redirect to login

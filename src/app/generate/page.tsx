@@ -138,7 +138,7 @@ export default function GenerateMenu() {
         
         {/* BACK BUTTON */}
         <Link 
-          href="/dashboard" 
+          href="/" 
           className="inline-flex items-center text-zinc-400 hover:text-amber-500 transition-all duration-200 mb-8 font-medium gap-2"
         >
           <span>←</span> Back to Dashboard

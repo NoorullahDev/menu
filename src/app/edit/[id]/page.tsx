@@ -21,7 +21,7 @@ interface MenuData {
   restaurant_name: string;
   categories: MenuCategory[];
   prep_time?: string;
-  theme?: 'midnight' | 'ivory' | 'crimson' | 'forest';
+  theme?: string;
   currency?: string;
 }
 
@@ -285,7 +285,7 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
       <div className="sticky top-0 z-50 bg-[#09090b]/80 backdrop-blur-md border-b border-white/10 shadow-sm">
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
         <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-4xl">
-          <Link href="/dashboard" className="text-zinc-400 hover:text-amber-500 transition-all duration-200 font-medium flex items-center gap-2">
+          <Link href="/" className="text-zinc-400 hover:text-amber-500 transition-all duration-200 font-medium flex items-center gap-2">
             <span>←</span> <span className="hidden sm:inline">Back to Dashboard</span>
           </Link>
           <h1 className="text-xl font-bold text-zinc-100">Edit Menu</h1>
