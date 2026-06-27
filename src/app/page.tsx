@@ -67,6 +67,12 @@ export default function Home() {
             </span>
           </div>
           <div className="flex items-center gap-4">
+            <Link 
+              href="/generate" 
+              className="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 bg-amber-500 text-zinc-950 rounded-lg font-bold hover:bg-amber-400 hover:scale-105 transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)] text-sm active:scale-95"
+            >
+              <span className="text-lg leading-none">+</span> New Menu Project
+            </Link>
             <button 
               onClick={handleLogout}
               className="px-4 py-2 text-zinc-400 hover:text-red-400 transition-colors font-medium text-sm"
